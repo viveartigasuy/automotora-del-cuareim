@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Reserva tu prueba de manejo gratuita con Automotora del Cuareim y encuentra el vehículo usado perfecto con confianza">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://script.google.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; img-src 'self' data: https://via.placeholder.com; connect-src 'self' https://script.google.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://script.google.com https://player.vimeo.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; img-src 'self' data: https://via.placeholder.com; connect-src 'self' https://script.google.com; frame-src 'self' https://player.vimeo.com;">
     <title>Automotora del Cuareim - Reserva Tu Prueba Gratis</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -75,46 +75,434 @@
             transition: transform 0.4s ease;
         }
         .video-wrapper:hover { transform: scale(1.02); }
-        .video-wrapper video {
+        .video-wrapper iframe {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             border: none;
+        }
+        .form-container {
+            width: 50%;
+            max-width: 500px;
+            padding: 20px;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideInRight 0.8s ease forwards 0.4s;
+        }
+        .form-container h1 {
+            font-size: 40px;
+            color: #1e3799;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .form-container .subtitle {
+            font-size: 18px;
+            color: #34495e;
+            margin-bottom: 20px;
+        }
+        .form-wrapper {
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(30, 55, 153, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .form-wrapper:hover { transform: translateY(-5px); }
+        .countdown-message { 
+            color: #c0392b;
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        .countdown-timer {
+            background: linear-gradient(135deg, #1e3799, #0f1c4d);
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(30, 55, 153, 0.2);
+        }
+        input {
+            width: 100%;
+            padding: 15px;
+            margin: 15px 0;
+            border: 2px solid rgba(52, 73, 94, 0.2);
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #f9fbfd;
+        }
+        input:focus {
+            border-color: #1e3799;
+            box-shadow: 0 0 10px rgba(30, 55, 153, 0.2);
+            outline: none;
+            background: #fff;
+        }
+        .btn {
+            background: linear-gradient(135deg, #1e3799, #0f1c4d);
+            color: white;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            width: 100%;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .btn:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 6px 20px rgba(30, 55, 153, 0.3); 
+        }
+        .btn.loading { 
+            opacity: 0.7; 
+            position: relative; 
+            pointer-events: none;
+        }
+        .btn.loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 3px solid #fff;
+            border-top: 3px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        .features {
+            max-width: 1300px;
+            margin: 60px auto;
+            padding: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        .features h2 {
+            font-size: 38px;
+            color: #1e3799;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .feature-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+        .feature-item {
+            width: 30%;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+        }
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+        }
+        .feature-item i {
+            font-size: 32px;
+            color: #1e3799;
+            margin-bottom: 15px;
+        }
+        .feature-item h3 {
+            font-size: 22px;
+            color: #1e3799;
+            margin-bottom: 15px;
+        }
+        .feature-item p {
+            font-size: 16px;
+            color: #34495e;
+        }
+        .vehicles {
+            max-width: 1300px;
+            margin: 60px auto;
+            padding: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        .vehicles h2 {
+            font-size: 38px;
+            color: #1e3799;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .vehicle-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+        .vehicle-item {
+            width: 30%;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        .vehicle-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+        }
+        .vehicle-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        .vehicle-item img:hover {
+            transform: scale(1.05);
+        }
+        .vehicle-item h3 {
+            font-size: 24px;
+            color: #1e3799;
+            margin-bottom: 10px;
+        }
+        .vehicle-item .price {
+            font-size: 20px;
+            color: #c0392b;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .vehicle-item p {
+            font-size: 16px;
+            color: #34495e;
+            margin-bottom: 20px;
+        }
+        .vehicle-item .btn {
+            background: linear-gradient(135deg, #1e3799, #0f1c4d);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            display: inline-block;
+            width: auto;
+        }
+        .vehicle-item .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(30, 55, 153, 0.3);
+        }
+        .team {
+            max-width: 1300px;
+            margin: 60px auto;
+            padding: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        .team h2 {
+            font-size: 38px;
+            color: #1e3799;
+            font-weight: 700;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .team-members {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .team-member {
+            width: 300px;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+        }
+        .team-member img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 5px solid #1e3799;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             object-fit: cover;
         }
-        /* Personalizar controles del video */
-        .video-wrapper video::-webkit-media-controls {
-            display: flex;
-            justify-content: space-between;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 5px;
+        .team-member:hover img { 
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(30, 55, 153, 0.5);
+        }
+        .team-member h3 {
+            font-size: 24px;
+            color: #1e3799;
+            margin-bottom: 10px;
+        }
+        .team-member p {
+            font-size: 16px;
+            color: #34495e;
+        }
+        .hidden-story { 
+            display: none; 
+            font-size: 14px;
+            margin-top: 10px;
+            transition: opacity 0.3s ease;
+        }
+        .team-member:hover .hidden-story { 
+            display: block; 
+            color: #1e3799; 
+            opacity: 1;
+        }
+        .testimonials {
+            max-width: 1300px;
+            margin: 60px auto;
+            padding: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        .testimonials h2 {
+            font-size: 38px;
+            color: #1e3799;
+            font-weight: 700;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .testimony {
+            display: inline-block;
+            width: 30%;
+            margin: 20px 1.5%;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        .testimony:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+        }
+        .testimony img {
+            width:> <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Reserva tu prueba de manejo gratuita con Automotora del Cuareim y encuentra el vehículo usado perfecto con confianza">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://script.google.com https://player.vimeo.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; img-src 'self' data: https://via.placeholder.com; connect-src 'self' https://script.google.com; frame-src 'self' https://player.vimeo.com;">
+    <title>Automotora del Cuareim - Reserva Tu Prueba Gratis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, rgba(10, 25, 47, 0.2), rgba(34, 60, 80, 0.1)), url('fondo.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #2c3e50;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        .header-top {
+            position: fixed;
+            top: 0;
             width: 100%;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 40px;
         }
-        .video-wrapper video::-webkit-media-controls-enclosure {
+        .header-top.hidden { transform: translateY(-100%); }
+        .header-top .logo {
+            font-size: 30px;
+            font-weight: 700;
+            color: #1e3799;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 1300px;
+            margin: 120px auto 60px;
+            padding: 40px;
+            gap: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            animation: fadeInUp 0.8s ease-out;
+        }
+        .video-container {
+            width: 50%;
+            max-width: 600px;
+            padding: 20px;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideInLeft 0.8s ease forwards 0.2s;
+        }
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            border-radius: 15px;
             overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease;
         }
-        .video-wrapper video::-webkit-media-controls-panel {
-            display: flex;
-            width: auto;
-            justify-content: space-between;
-        }
-        /* Ocultar controles no deseados en Webkit (Chrome, Safari) */
-        .video-wrapper video::-webkit-media-controls-timeline,
-        .video-wrapper video::-webkit-media-controls-current-time-display,
-        .video-wrapper video::-webkit-media-controls-time-remaining-display,
-        .video-wrapper video::-webkit-media-controls-fullscreen-button,
-        .video-wrapper video::-webkit-media-controls-mute-button {
-            display: none !important;
-        }
-        /* Firefox */
-        .video-wrapper video::-moz-media-controls {
-            display: flex;
-        }
-        .video-wrapper video::-moz-media-controls-timeline,
-        .video-wrapper video::-moz-media-controls-fullscreen-button {
-            display: none !important;
+        .video-wrapper:hover { transform: scale(1.02); }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
         }
         .form-container {
             width: 50%;
@@ -607,10 +995,7 @@
     <div class="header" id="inicio">
         <div class="video-container">
             <div class="video-wrapper">
-                <video id="custom-video" controls>
-                    <source src="tu-video.mp4" type="video/mp4">
-                    Tu navegador no soporta el elemento de video.
-                </video>
+                <iframe src="https://player.vimeo.com/video/1084731221?h=6c9c735a6c&controls=1&title=0&byline=0&portrait=0" width="100%" height="100%" frameborder="0" allow="autoplay; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
         <div class="form-container">
